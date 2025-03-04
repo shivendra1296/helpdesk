@@ -26,7 +26,7 @@ bench get-app helpdesk --branch main
 
 bench new-site frappe.dev.umsglobal.net \  # Using provided hostname
 --force \
---mariadb-root-password 123 \
+--mariadb-root-password DB123 \
 --admin-password admin \
 --no-mariadb-socket
 
