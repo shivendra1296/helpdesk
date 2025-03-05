@@ -1,5 +1,19 @@
 #!/bin/bash
+echo "Waiting for MariaDB and Redis services to be ready..."
 
+# Wait for MariaDB
+while [[ -z $(kubectl get pods -n frappe --selector=app.kubernetes.io/name=frappe-helpdesk-mariadb --field-selector=status.phase=Running -o jsonpath="{.items[0].metadata.name}") ]]; do
+    echo "MariaDB is not ready yet. Retrying in 10s..."
+    sleep 10
+done
+
+# Wait for Redis Master
+while [[ -z $(kubectl get pods -n frappe --selector=app.kubernetes.io/name=frappe-helpdesk-redis-master --field-selector=status.phase=Running -o jsonpath="{.items[0].metadata.name}") ]]; do
+    echo "Redis Master is not ready yet. Retrying in 10s..."
+    sleep 10
+done
+
+echo "All required services are running. Proceeding with Frappe initialization..."
 # Check if Bench already exists
 if [ -d "/home/frappe/frappe-bench/apps/frappe" ]; then
     echo "Bench already exists, skipping init"
