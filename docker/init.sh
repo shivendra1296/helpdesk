@@ -70,7 +70,7 @@ sed -i '/watch/d' ./Procfile
 
 bench get-app helpdesk --branch main
 
-bench new-site frappe.abcd.com \  # Using provided hostname
+bench new-site frappe.dev.umsglobal.net \  # Using provided hostname
 --force \
 --mariadb-root-password 123 \
 --admin-password admin \
