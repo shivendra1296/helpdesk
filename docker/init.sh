@@ -13,10 +13,10 @@ bench init --skip-redis-config-generation frappe-bench --version version-15
 cd frappe-bench
 
 # Use Kubernetes service names instead of localhost
-bench set-mariadb-host frappe-mariadb  # Using Kubernetes service name
-bench set-redis-cache-host frappe-redis-master:6379
-bench set-redis-queue-host frappe-redis-master:6379
-bench set-redis-socketio-host frappe-redis-master:6379
+bench set-mariadb-host frappe-helpdesk-mariadb  # Using Kubernetes service name
+bench set-redis-cache-host frappe-helpdesk-redis-master:6379
+bench set-redis-queue-host frappe-helpdesk-redis-master:6379
+bench set-redis-socketio-host frappe-helpdesk-redis-master:6379
 
 # Remove redis, watch from Procfile
 sed -i '/redis/d' ./Procfile
