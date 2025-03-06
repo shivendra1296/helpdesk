@@ -24,7 +24,7 @@ else
     bench init --skip-redis-config-generation frappe-bench --version version-15
 fi
 
-cd frappe-bench
+cd /home/frappe/frappe-bench
 
 # Use Kubernetes service names instead of localhost
 bench set-mariadb-host frappe-mariadb  # Using Kubernetes service name
@@ -38,7 +38,7 @@ sed -i '/watch/d' ./Procfile
 
 bench get-app helpdesk --branch main
 
-bench new-site frappe.dev.umsglobal.net \  # Using provided hostname
+bench new-site helpdesk.localhost \  # Using provided hostname
 --force \
 --mariadb-root-password DB123 \
 --admin-password admin \
@@ -70,24 +70,24 @@ sed -i '/watch/d' ./Procfile
 
 bench get-app helpdesk --branch main
 
-bench new-site frappe.dev.umsglobal.net \  # Using provided hostname
+bench new-site helpdesk.localhost \  # Using provided hostname
 --force \
 --mariadb-root-password 123 \
 --admin-password admin \
 --no-mariadb-socket
 
-bench --site frappe.dev.umsglobal.net install-app helpdesk
-bench --site frappe.dev.umsglobal.net set-config developer_mode 1
-bench --site frappe.dev.umsglobal.net set-config mute_emails 1
-bench --site frappe.dev.umsglobal.net set-config server_script_enabled 1
-bench --site frappe.dev.umsglobal.net clear-cache
-bench use frappe.dev.umsglobal.net
+bench --site helpdesk.localhost install-app helpdesk
+bench --site helpdesk.localhost set-config developer_mode 1
+bench --site helpdesk.localhost set-config mute_emails 1
+bench --site helpdesk.localhost set-config server_script_enabled 1
+bench --site helpdesk.localhost clear-cache
+bench use helpdesk.localhost
 
 bench start install-app helpdesk
-bench --site frappe.dev.umsglobal.net set-config developer_mode 1
-bench --site frappe.dev.umsglobal.net set-config mute_emails 1
-bench --site frappe.dev.umsglobal.net set-config server_script_enabled 1
-bench --site frappe.dev.umsglobal.net clear-cache
-bench use frappe.dev.umsglobal.net
+bench --site helpdesk.localhost set-config developer_mode 1
+bench --site helpdesk.localhost set-config mute_emails 1
+bench --site helpdesk.localhost set-config server_script_enabled 1
+bench --site helpdesk.localhost clear-cache
+bench use helpdesk.localhost
 
 bench start
